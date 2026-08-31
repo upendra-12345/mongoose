@@ -9,7 +9,7 @@ const userSchema= new mongoose.Schema({
         required:true,
     },
     password:{
-        type:Date,
+        type:String,
         default:Date.now
     },
     
