@@ -3,7 +3,7 @@ const mongoose=require("mongoose");
 const blogSchema= new mongoose.Schema({
     title:{
         type:String,
-        required:true
+        required: true
     },
     author:{
         type:String,
@@ -16,6 +16,10 @@ const blogSchema= new mongoose.Schema({
         type:Date,
         default:Date.now
     },
+    userId:{
+            type:mongoose.Types.ObjectId,
+            ref:"User",
+        }
 });
 const Blog= new mongoose.model("Blog",blogSchema);
 module.exports=Blog;
