@@ -5,6 +5,20 @@ const mongoose=require("mongoose");
 const User= require("./models/userschema");
 const Blog= require("./models/blogschema");
 app.use(express.json());
+// DELETE USER
+app.delete("/user/deleteuser/:id",async(req,res)=>{
+    try{
+        let {id}= req.params;
+        let user= await User.findByIdAndDelete(id);
+        console.log(user);
+        await Blog.deleteMany({userId:id});
+        res.send("user removed !");
+
+    }catch(error){
+        console.log(error);
+        res.send("internal server error");
+    }
+});
 
 // delete blog
 app.delete("/blog/deleteblog/:id",async(req,res)=>{
