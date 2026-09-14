@@ -40,16 +40,16 @@ const app= express();
 
 
 // UTILITY MIDDLEWARE
-app.use((req,res,next)=>{
-    req.responseTime= new Date(Date.now()).toString();
+// app.use((req,res,next)=>{
+//     req.responseTime= new Date(Date.now()).toString();
 
-    console.log(req.method,req.path,req.responseTime,req.hostname);
-    next();
-});
-app.get("/",(req,res,next)=>{
-    res.send("hii i am root server");
+//     console.log(req.method,req.path,req.responseTime,req.hostname);
+//     next();
+// });
+// app.get("/",(req,res,next)=>{
+//     res.send("hii i am root server");
    
-});
+// });
 
 // API TOKEN AS QUERY STRING
 app.use("/api",(req,res,next)=>{
@@ -64,6 +64,16 @@ app.use("/api",(req,res,next)=>{
 app.get("/api",(req,res)=>{
     res.send("data ");
 });
+
+// ERROR HANDLING MIDDLEWARE
+app.get("/err",(req,res)=>{
+    abcd=abcd;
+});
+app.use((err,req,res,next)=>{
+    console.log("------ERROR------");
+    next(err);
+});
+
 app.listen(8080,()=>{
-    console.log("server started");
+    console.log("server started on port 8080");
 });
